@@ -10,28 +10,29 @@ class App extends React.Component {
 
   componentDidMount() {
     const { fetchData } = this.props
-    console.log(this.props)
-    // fetchData()
+    
+    fetchData()
   }
 
   handleClick = () => {
 
-    const { getPart, part, iteration } = this.props
-    console.log(part.length)
-    this.iteration++
-    if (!part.length) {
-      const count = 10
-      return getPart(0, count)
-    }
-    getPart(0, 10 * this.iteration)
+    // const { getPart, part, iteration } = this.props
+    // console.log(part.length)
+    // this.iteration++
+    // if (!part.length) {
+    //   const count = 10
+    //   return getPart(0, count)
+    // }
+    // getPart(0, 10 * this.iteration)
   };
 
   render() {
     const { isLoading } = this.props
     return (
-      <React.Fragment>
+      <main className="container">
         {isLoading ? 'Loading' : 'Loaded'}
-      </React.Fragment>
+        <Button type="button" onClick={ this.handleClick }>Push</Button>
+      </main>
     )
   }
 }

@@ -1,10 +1,10 @@
 import { observable, action, decorate  } from 'mobx'
-
 class AppStore {
   photos = [];
   part = [];
   iteration = 0;
   isLoading = false;
+  
   fetchData = () => {
     this.isLoading = true
     fetch('https://jsonplaceholder.typicode.com/photos')
