@@ -34,4 +34,4 @@ decorate(Store, {
     getPart: action,
 })
 
-export default new Store()
+export default Store

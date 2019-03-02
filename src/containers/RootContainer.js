@@ -2,6 +2,8 @@ import * as React from 'react'
 import Button from 'arui-feather/button'
 import { observable, decorate, action, toJS  } from 'mobx'
 import { observer, inject } from 'mobx-react'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 class App extends React.Component {
 
@@ -28,10 +30,10 @@ class App extends React.Component {
   render() {
     const { part } = this.props
     return (
-      <ul>
-        <Button type="button" onClick={ this.handleClick }>More</Button>
-        {part.map(photo => <li key={ photo.id }>{photo.title}</li>)} 
-      </ul>
+      <React.Fragment>
+        <Header />
+        <Footer /> 
+      </React.Fragment>
     )
   }
 }
