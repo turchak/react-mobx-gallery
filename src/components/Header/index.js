@@ -1,8 +1,9 @@
 import React from 'react'
+import './styles.sass'
 
 const Header = props => {
     return (
-      <header>
+      <header className="header">
         This is Header
       </header>
     )

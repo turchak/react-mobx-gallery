@@ -1,8 +1,9 @@
 import React from 'react'
+import './styles.sass'
 
 const Footer = props => {
     return (
-      <footer>
+      <footer className="footer">
         This is Header
       </footer>
     )
