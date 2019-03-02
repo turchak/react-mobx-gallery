@@ -1,13 +1,12 @@
 import { observable, action, decorate  } from 'mobx'
 
-class Store {
+class AppStore {
   photos = [];
   part = [];
   iteration = 0;
   isLoading = false;
   fetchData = () => {
     this.isLoading = true
-
     fetch('https://jsonplaceholder.typicode.com/photos')
     .then(res => res.json())
     .then(result => {
@@ -25,7 +24,7 @@ class Store {
     this.part = this.photos.slice(a, value)
   }
 }
-decorate(Store, {
+decorate(AppStore, {
     iteration: observable,
     part: observable,
     photos: observable,
@@ -34,4 +33,7 @@ decorate(Store, {
     getPart: action,
 })
 
-export default Store
+const appStore = new AppStore()
+
+export default appStore
+export { appStore }

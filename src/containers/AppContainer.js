@@ -2,15 +2,16 @@ import * as React from 'react'
 import Button from 'arui-feather/button'
 import { observable, decorate, action, toJS  } from 'mobx'
 import { observer, inject } from 'mobx-react'
+// import { appStore } from '../store/index'
 
 class App extends React.Component {
 
   iteration = 0;
 
   componentDidMount() {
-    console.log(this.props)
     const { fetchData } = this.props
-    fetchData()
+    console.log(this.props)
+    // fetchData()
   }
 
   handleClick = () => {
@@ -26,10 +27,10 @@ class App extends React.Component {
   };
 
   render() {
-    const { part } = this.props
+    const { isLoading } = this.props
     return (
       <React.Fragment>
-          This.is app
+        {isLoading ? 'Loading' : 'Loaded'}
       </React.Fragment>
     )
   }
@@ -39,13 +40,9 @@ decorate(App, {
   iteration: observable,
 })
 
-export default inject((data) => {
-  console.log(data)
-  return {
-    iteration: data.store.iteration,
-    fetchData: data.store.fetchData,
-    isLoading: data.store.isLoading,
-    part: data.store.part,
-    getPart: data.store.getPart,
-  }
+export default inject((stores, props, context) => {
+    return {
+        isLoading: stores.appStore.isLoading,
+        fetchData: stores.appStore.fetchData,
+    }
 })(observer(App))

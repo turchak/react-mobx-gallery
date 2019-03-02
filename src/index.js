@@ -1,13 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'mobx-react'
+import { Provider, propTypes } from 'mobx-react'
 import RootContainer from './containers/RootContainer'
-import Store from './store'
+import appStore from './store'
 import './index.sass'
 import * as serviceWorker from './serviceWorker'
 
+const stores = { appStore }
+
 ReactDOM.render(
-  <Provider store={ new Store() }>
+  <Provider { ...stores }>
     <RootContainer />
   </Provider>, document.getElementById('root'))
 serviceWorker.unregister()
