@@ -7,6 +7,7 @@
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "node-sass": "^4.11.0",
+    "normalize.css": "^8.0.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5"
@@ -20,27 +21,84 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "space-in-parens": [0,"always"],
-      "template-curly-spacing": [2,"always"],
-      "array-bracket-spacing": [2,"always"],
-      "object-curly-spacing": [2,"always"],
-      "computed-property-spacing": [2,"always"],
-      "no-multiple-empty-lines": [2,{"max": 1,"maxEOF": 0,"maxBOF": 0}],
-      "quotes": [1,"single","avoid-escape"],
-      "no-use-before-define": [2,{"functions": false}],
-      "semi": [1,"never"],
+      "space-in-parens": [
+        0,
+        "always"
+      ],
+      "template-curly-spacing": [
+        2,
+        "always"
+      ],
+      "array-bracket-spacing": [
+        2,
+        "always"
+      ],
+      "object-curly-spacing": [
+        2,
+        "always"
+      ],
+      "computed-property-spacing": [
+        2,
+        "always"
+      ],
+      "no-multiple-empty-lines": [
+        2,
+        {
+          "max": 1,
+          "maxEOF": 0,
+          "maxBOF": 0
+        }
+      ],
+      "quotes": [
+        1,
+        "single",
+        "avoid-escape"
+      ],
+      "no-use-before-define": [
+        2,
+        {
+          "functions": false
+        }
+      ],
+      "semi": [
+        1,
+        "never"
+      ],
       "prefer-const": 1,
       "react/jsx-filename-extension": 0,
-      "react/jsx-curly-spacing": [2,"always"],
-      "react/jsx-indent": [2,2],
-      "react/no-array-index-key": [1],
-      "no-undef": [1],
-      "no-case-declarations": [1],
-      "no-return-assign": [1],
-      "no-param-reassign": [1],
-      "no-shadow": [1],
-      "camelcase": [1],
-      "no-underscore-dangle": [0,"always"]
+      "react/jsx-curly-spacing": [
+        2,
+        "always"
+      ],
+      "react/jsx-indent": [
+        2,
+        2
+      ],
+      "react/no-array-index-key": [
+        1
+      ],
+      "no-undef": [
+        1
+      ],
+      "no-case-declarations": [
+        1
+      ],
+      "no-return-assign": [
+        1
+      ],
+      "no-param-reassign": [
+        1
+      ],
+      "no-shadow": [
+        1
+      ],
+      "camelcase": [
+        1
+      ],
+      "no-underscore-dangle": [
+        0,
+        "always"
+      ]
     }
   },
   "browserslist": [
