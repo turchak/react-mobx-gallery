@@ -1,4 +1,4 @@
-import { observable, action, decorate  } from 'mobx'
+import { observable, action, decorate, toJS  } from 'mobx'
 import { normalize, schema } from 'normalizr'
 
 class AppStore {
@@ -7,38 +7,42 @@ class AppStore {
   iteration = 0;
   isLoading = false;
   isValid = false;
+  albumId = null;
+  album = null;
   
   fetchData = () => {
     this.isLoading = true
     fetch('https://jsonplaceholder.typicode.com/photos')
     .then(res => res.json())
-    .then(result => {
-      console.log(result)
+    .then(json => {
       action(() => {
-        // Define a users schema
-        const json = result.reduce((acc, val) => {
+        this.photos = json.reduce((acc, val) => {
           if(!acc.albums.length) {
             acc.albums.push({ id: val.albumId })
-            acc.albums[ acc.albums.length-1 ].photos = []
+            acc.albums[acc.albums.length-1].photos = []
           }
-          if (acc.albums[ acc.albums.length-1 ].id !== val.albumId) {
+          if (acc.albums[acc.albums.length-1].id !== val.albumId) {
             acc.albums.push({ id: val.albumId })
-            acc.albums[ acc.albums.length-1 ].photos = []
+            acc.albums[acc.albums.length-1].photos = []
           }
-          acc.albums[ acc.albums.length-1 ].photos.push({ id: val.id, url: val.url,  title: val.title, thumbnailUrl: val.thumbnailUrl })
+          acc.albums[acc.albums.length-1].photos.push({ id: val.id, url: val.url,  title: val.title, thumbnailUrl: val.thumbnailUrl })
           return acc
         }, {
           albums: []
         })
-        console.log(json)
-        this.photos = json
         this.isLoading = false
         this.isValid = true
       })()
       
     }).catch(e => {
+      this.isLoading = false
       console.log(e)
     })
+  }
+
+  setAlbumId = id => {
+    this.albumId = id
+    this.album = this.photos.albums.filter(album => album.id === id)[0]
   }
 
   getPart = (a, value) => {
@@ -47,6 +51,8 @@ class AppStore {
 }
 decorate(AppStore, {
     iteration: observable,
+    albumId: observable,
+    album: observable,
     isValid: observable,
     part: observable,
     photos: observable,

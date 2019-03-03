@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker'
 const stores = { appStore }
 
 ReactDOM.render(
-  <Provider { ...stores }>
+  <Provider {...stores}>
     <RootContainer />
   </Provider>, document.getElementById('root'))
 serviceWorker.unregister()

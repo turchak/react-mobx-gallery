@@ -1,12 +1,29 @@
-import React from 'react'
+import * as React from 'react'
+import Input from 'arui-feather/input'
+import logo from '../../assets/img/gallery.svg'
 import './styles.sass'
 
-const Header = props => {
-    return (
+class Header extends React.Component {
+
+  handleChange = ev => {
+    console.log(ev)
+  }
+
+  render() {
+    return  (
       <header className="header">
-        This is Header
+        <a href="/" className="logo">
+          <img src={logo} className="logo__img"alt="logo"/>
+        </a>
+        <Input
+          placeholder='Search'
+          view='line'
+          size='l'
+          onChange={this.handleChange}
+        />
       </header>
-    )
+    ) 
+  }
 }
 
 export default Header

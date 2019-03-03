@@ -1,0 +1,46 @@
+// Settings
+$mobile-s-width: 320px
+$mobile-m-width: 375px
+$mobile-l-width: 425px
+$tablet-p-width: 768px
+$tablet-l-width: 1024px
+$desktop-width: 1200px
+$desktop-l-width: 1440px
+$desktop-4k-width: 2560px
+
+// Mixins
+=mobile-small-min
+  @media (min-width: #{$mobile-s-width})
+    @content
+
+=mobile-medium-min
+  @media (min-width: #{$mobile-m-width})
+    @content
+
+=mobile-large-min
+  @media (min-width: #{$mobile-l-width})
+    @content
+
+=tablet-min
+  @media (min-width: #{$tablet-p-width})
+    @content
+
+=tablet-landscape-min
+  @media (min-width: #{$tablet-l-width})
+    @content
+
+=desktop-min
+  @media (min-width: #{$desktop-width})
+    @content
+
+=desktop-l-min
+  @media (min-width: #{$desktop-l-width})
+    @content
+
+=desktop-4k
+  @media (min-width: #{$desktop-4k-width})
+    @content
+
+=retina
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+    @content

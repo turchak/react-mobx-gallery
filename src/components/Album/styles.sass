@@ -1,0 +1,21 @@
+@import ../../media-queries.sass
+.gallery
+    display: flex
+    flex-wrap: wrap
+    margin: 0 -15px
+    &__item
+        font-size: 0
+        width: 50%
+        @include mobile-large-min
+            width: calc(100% / 3)
+        @include tablet-min
+            width: calc(100% / 5)
+        @include tablet-landscape-min    
+            width: calc(100% / 7)
+        @include desktop-min    
+            width: calc(100% / 8)  
+        @include desktop-l-min    
+            width: calc(100% / 10)         
+        @include desktop-4k
+            width: calc(100% / 17)
+
