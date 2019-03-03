@@ -8,6 +8,7 @@
     "mobx-react": "^5.4.3",
     "node-sass": "^4.11.0",
     "normalize.css": "^8.0.1",
+    "normalizr": "^3.3.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5"

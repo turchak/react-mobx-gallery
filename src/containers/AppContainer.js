@@ -1,8 +1,9 @@
 import * as React from 'react'
 import Button from 'arui-feather/button'
-import { observable, decorate, action, toJS  } from 'mobx'
+import Select from 'arui-feather/select'
+import Spin from 'arui-feather/spin'
+import { observable, decorate, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-// import { appStore } from '../store/index'
 
 class App extends React.Component {
 
@@ -10,28 +11,26 @@ class App extends React.Component {
 
   componentDidMount() {
     const { fetchData } = this.props
-    
     fetchData()
   }
 
   handleClick = () => {
-
-    // const { getPart, part, iteration } = this.props
-    // console.log(part.length)
-    // this.iteration++
-    // if (!part.length) {
-    //   const count = 10
-    //   return getPart(0, count)
-    // }
-    // getPart(0, 10 * this.iteration)
   };
 
   render() {
-    const { isLoading } = this.props
+    const { isLoading, photos, selectOptions, isValid } = this.props
+    if (!isValid) {
+      return isLoading ? <Spin size='l' visible={ true }/> : null
+    }
     return (
       <main className="container">
-        {isLoading ? 'Loading' : 'Loaded'}
-        <Button type="button" onClick={ this.handleClick }>Push</Button>
+        <Select
+                mode='radio'
+                hideTick={ true }
+                placeholder='Choose Album'
+                options={ selectOptions }
+                renderPopupOnFocus={ true }
+        />
       </main>
     )
   }
@@ -42,8 +41,12 @@ decorate(App, {
 })
 
 export default inject((stores, props, context) => {
+  const selectOptions = stores.appStore.photos.albums.map(el => ({ value: el.id, text: `Album - #${ el.id }` }))
     return {
         isLoading: stores.appStore.isLoading,
         fetchData: stores.appStore.fetchData,
+        photos: stores.appStore.photos.albums,
+        isValid: stores.appStore.isValid,
+        selectOptions
     }
 })(observer(App))
