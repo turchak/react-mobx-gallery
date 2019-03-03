@@ -1,0 +1,19 @@
+{
+  "main.css": "/react-mobx-gallery/static/css/main.c4d95efd.chunk.css",
+  "main.js": "/react-mobx-gallery/static/js/main.2d4e25d9.chunk.js",
+  "main.js.map": "/react-mobx-gallery/static/js/main.2d4e25d9.chunk.js.map",
+  "runtime~main.js": "/react-mobx-gallery/static/js/runtime~main.fab9a267.js",
+  "runtime~main.js.map": "/react-mobx-gallery/static/js/runtime~main.fab9a267.js.map",
+  "static/css/2.d0684df4.chunk.css": "/react-mobx-gallery/static/css/2.d0684df4.chunk.css",
+  "static/js/2.748b5dd9.chunk.js": "/react-mobx-gallery/static/js/2.748b5dd9.chunk.js",
+  "static/js/2.748b5dd9.chunk.js.map": "/react-mobx-gallery/static/js/2.748b5dd9.chunk.js.map",
+  "index.html": "/react-mobx-gallery/index.html",
+  "precache-manifest.d94401ba9777d4f8ed9452e3da2b59b4.js": "/react-mobx-gallery/precache-manifest.d94401ba9777d4f8ed9452e3da2b59b4.js",
+  "service-worker.js": "/react-mobx-gallery/service-worker.js",
+  "static/css/2.d0684df4.chunk.css.map": "/react-mobx-gallery/static/css/2.d0684df4.chunk.css.map",
+  "static/css/main.c4d95efd.chunk.css.map": "/react-mobx-gallery/static/css/main.c4d95efd.chunk.css.map",
+  "static/media/arrow-down.css": "/react-mobx-gallery/static/media/icon_arrow-down_xxl_white.9eaf2edb.svg",
+  "static/media/arrow-up.css": "/react-mobx-gallery/static/media/icon_arrow-up_xxl_white.eb5c7952.svg",
+  "static/media/check.css": "/react-mobx-gallery/static/media/icon_check_xxl_white.6bfe16c2.svg",
+  "static/media/close.css": "/react-mobx-gallery/static/media/icon_close_xs_white.bca604a9.svg"
+}
