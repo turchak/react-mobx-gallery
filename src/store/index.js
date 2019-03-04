@@ -31,15 +31,15 @@ class AppStore {
         this.isLoading = false
         this.isValid = true
       })()
-      
     }).catch(e => {
       this.isLoading = false
     })
   }
 
   search = word => {
-    if (word.length <= 3 && word.length !== 0) {
-      return
+    if (word.length <= 2) {
+      this.searchResult = null
+      return 
     }
     const result = this.photos.albums.reduce((acc, val) => {
       const data = val.photos.reduce((accumulator, value) => {
@@ -51,15 +51,12 @@ class AppStore {
       }, [])
       return {...acc, photos: [ ...acc.photos, ...data ]}
     }, {searchId: +new Date(), photos: []})
-    if (word === '') {
-      this.searchResult = null
-      return
-    }
     this.searchResult = result
   }
 
   setAlbumId = id => {
     this.albumId = id
+    this.searchResult = null
     this.album = this.photos.albums.filter(album => album.id === id)[0]
   }
 }
