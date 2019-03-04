@@ -6,34 +6,34 @@ class AppStore {
   isValid = false;
   albumId = null;
   album = null;
-  searchResult: null;
+  searchResult = null;
   
   fetchData = () => {
     this.isLoading = true
     fetch('https://jsonplaceholder.typicode.com/photos')
-    .then(res => res.json())
-    .then(json => {
-      action(() => {
-        this.photos = json.reduce((acc, val) => {
-          if(!acc.albums.length) {
-            acc.albums.push({ id: val.albumId })
-            acc.albums[acc.albums.length-1].photos = []
-          }
-          if (acc.albums[acc.albums.length-1].id !== val.albumId) {
-            acc.albums.push({ id: val.albumId })
-            acc.albums[acc.albums.length-1].photos = []
-          }
-          acc.albums[acc.albums.length-1].photos.push({ id: val.id, url: val.url,  title: val.title, thumbnailUrl: val.thumbnailUrl })
-          return acc
-        }, {
-          albums: []
-        })
+      .then(res => res.json())
+      .then(json => {
+        action(() => {
+          this.photos = json.reduce((acc, val) => {
+            if(!acc.albums.length) {
+              acc.albums.push({ id: val.albumId })
+              acc.albums[acc.albums.length-1].photos = []
+            }
+            if (acc.albums[acc.albums.length-1].id !== val.albumId) {
+              acc.albums.push({ id: val.albumId })
+              acc.albums[acc.albums.length-1].photos = []
+            }
+            acc.albums[acc.albums.length-1].photos.push({ id: val.id, url: val.url,  title: val.title, thumbnailUrl: val.thumbnailUrl })
+            return acc
+          }, {
+            albums: []
+          })
+          this.isLoading = false
+          this.isValid = true
+        })()
+      }).catch(e => {
         this.isLoading = false
-        this.isValid = true
-      })()
-    }).catch(e => {
-      this.isLoading = false
-    })
+      })
   }
 
   search = word => {
@@ -61,14 +61,14 @@ class AppStore {
   }
 }
 decorate(AppStore, {
-    searchResult: observable,
-    albumId: observable,
-    album: observable,
-    isValid: observable,
-    photos: observable,
-    isLoading: observable,
-    fetchData: action,
-    search: action
+  searchResult: observable,
+  albumId: observable,
+  album: observable,
+  isValid: observable,
+  photos: observable,
+  isLoading: observable,
+  fetchData: action,
+  search: action
 })
 
 const appStore = new AppStore()
