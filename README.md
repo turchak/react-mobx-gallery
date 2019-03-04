@@ -1,1 +1,1 @@
-Demo: [Link]('https://turchak.github.io/react-mobx-gallery/')
+Demo: [Link](https://turchak.github.io/react-mobx-gallery/)
