@@ -5,9 +5,9 @@ import App from './AppContainer'
 
 const RootContainer = props => (
   <React.Fragment>
-    <Header />
+    {/*<Header />*/}
     <App />
-    <Footer />
+    {/*<Footer />*/}
   </React.Fragment>
 ) 
 
