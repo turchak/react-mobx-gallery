@@ -6,46 +6,30 @@ import App from './AppContainer'
 import { observer, inject } from 'mobx-react'
 
 class RootContainer extends React.Component {
-  // state = {
-  //   url: '/',
-  // }
-  componentDidMount() {
-    // this.unsubscribe = emitter
-    //   .subscribe('event:url-changed', data => {
-    //     this.setState({
-    //       url: data.url
-    //     })
-    //   })
-  }
 
-  // componentWillUnmount() {
-  //   this.unsubscribe()
-  // }
+  switchRoute = url => {
+    switch (url) {
+    case '/':
+      return <App />
+    case '/albums':
+      return <div>Albums</div>
+    default:
+      return <div>Default</div>
+    }
+  }
 
   render() {
     const { url } = this.props
-    console.log(url)
-    if (url === '/') {
-      return (
-        <>
-          <App isPhotos/>
-        </>
-      )
-    }
-    if (url === '/albums') {
-      return (
-        <>
-          <App isAlbums/>
-        </>
-      )
-    }
+    return (
+      <>
+        <Header />
+        {this.switchRoute(url)}
+        <Footer />
+      </>
+    )
   }
 }
 
-export default inject(stores => {
-  console.log(stores)
-  // const selectOptions = stores.appStore.photos.albums.map(el => ({ value: el.id, text: `Album - #${el.id}` }))
-  return {
-    url: stores.rootStore.routerStore.url
-  }
-})(observer(RootContainer))
+export default inject(stores => ({
+  url: stores.rootStore.routerStore.url
+}))(observer(RootContainer))
