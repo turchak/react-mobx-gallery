@@ -57,7 +57,7 @@
       "jsx-a11y/href-no-hash": "off",
       "jsx-a11y/anchor-is-valid": ["warn", {"aspects": ["invalidHref"]}],
       "space-in-parens": [0, "always"],
-      "template-curly-spacing": [2, "always"],
+      "template-curly-spacing": ["error", "never"],
       "array-bracket-spacing": [2, "always"],
       "object-curly-spacing": [0, "always"],
       "computed-property-spacing": ["error", "never"],
@@ -70,7 +70,8 @@
       "no-case-declarations": [1],
       "no-return-assign": [1],
       "camelcase": [1],
-      "indent": ["error", 2]
+      "indent": ["error", 2],
+      "max-len": ["error", { "code": 80 }]
     }
   },
   "browserslist": [
