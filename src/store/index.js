@@ -1,14 +1,12 @@
-import { observable, action, decorate, toJS  } from 'mobx'
-import { normalize, schema } from 'normalizr'
+import { observable, action, decorate  } from 'mobx'
 
 class AppStore {
   photos = { albums: [] };
-  part = [];
-  iteration = 0;
   isLoading = false;
   isValid = false;
   albumId = null;
   album = null;
+  searchResult: null;
   
   fetchData = () => {
     this.isLoading = true
@@ -36,29 +34,44 @@ class AppStore {
       
     }).catch(e => {
       this.isLoading = false
-      console.log(e)
     })
+  }
+
+  search = word => {
+    if (word.length <= 3 && word.length !== 0) {
+      return
+    }
+    const result = this.photos.albums.reduce((acc, val) => {
+      const data = val.photos.reduce((accumulator, value) => {
+        if(value.title.includes(word)) {
+          accumulator.push(value)
+          return accumulator
+        }
+        return accumulator
+      }, [])
+      return {...acc, photos: [ ...acc.photos, ...data ]}
+    }, {searchId: +new Date(), photos: []})
+    if (word === '') {
+      this.searchResult = null
+      return
+    }
+    this.searchResult = result
   }
 
   setAlbumId = id => {
     this.albumId = id
     this.album = this.photos.albums.filter(album => album.id === id)[0]
   }
-
-  getPart = (a, value) => {
-    this.part = this.photos.slice(a, value)
-  }
 }
 decorate(AppStore, {
-    iteration: observable,
+    searchResult: observable,
     albumId: observable,
     album: observable,
     isValid: observable,
-    part: observable,
     photos: observable,
     isLoading: observable,
     fetchData: action,
-    getPart: action,
+    search: action
 })
 
 const appStore = new AppStore()

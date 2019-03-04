@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { observer, inject } from 'mobx-react'
 import Input from 'arui-feather/input'
 import logo from '../../assets/img/gallery.svg'
 import './styles.sass'
@@ -6,7 +7,8 @@ import './styles.sass'
 class Header extends React.Component {
 
   handleChange = ev => {
-    console.log(ev)
+    const { search } = this.props
+    search(ev)
   }
 
   render() {
@@ -26,4 +28,6 @@ class Header extends React.Component {
   }
 }
 
-export default Header
+export default inject((stores) => ({
+    search: stores.appStore.search
+}))(observer(Header))

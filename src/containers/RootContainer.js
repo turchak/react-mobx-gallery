@@ -3,14 +3,12 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import App from './AppContainer'
 
-const RootContainer = props => {
-  return (
-    <React.Fragment>
-      <Header />
-      <App />
-      <Footer />
-    </React.Fragment>
-  ) 
-} 
+const RootContainer = props => (
+  <React.Fragment>
+    <Header />
+    <App />
+    <Footer />
+  </React.Fragment>
+) 
 
 export default RootContainer

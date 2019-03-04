@@ -1,15 +1,11 @@
 import * as React from 'react'
-import Button from 'arui-feather/button'
 import Select from 'arui-feather/select'
 import Spin from 'arui-feather/spin'
-import { observable, decorate, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import Album from '../components/Album/idnex'
+import Album from '../components/Album'
+import SearchResults from '../components/SearchResults'
 
 class App extends React.Component {
-
-  iteration = 0;
-
   componentDidMount() {
     const { fetchData } = this.props
     fetchData()
@@ -18,12 +14,10 @@ class App extends React.Component {
   handleChange = ev => {
     const { setAlbumId } = this.props
     setAlbumId(ev[0])
-    console.log(ev)
   };
 
   render() {
-    const { isLoading, selectOptions, isValid, album } = this.props
-    console.log(toJS(album))
+    const { isLoading, selectOptions, isValid, album, searchResult } = this.props
     if (!isValid) {
       return isLoading ? <Spin size='l' visible={true} className="loader"/> : null
     }
@@ -37,26 +31,25 @@ class App extends React.Component {
           onChange={this.handleChange}
           className="select"
         />
-        {album ? <Album album={album} /> : null}
+        {album && !searchResult? <Album album={album} /> : null}
+        {searchResult ? <SearchResults results={searchResult} /> : null}
       </main>
     )
   }
 }
 
-decorate(App, {
-  iteration: observable,
-})
-
-export default inject((stores, props, context) => {
-  console.log(stores)
+export default inject(stores => {
   const selectOptions = stores.appStore.photos.albums.map(el => ({ value: el.id, text: `Album - #${ el.id }` }))
     return {
         isLoading: stores.appStore.isLoading,
+        searchResult: stores.appStore.searchResult,
         fetchData: stores.appStore.fetchData,
         setAlbumId: stores.appStore.setAlbumId,
         album: stores.appStore.album,
         photos: stores.appStore.photos.albums,
         isValid: stores.appStore.isValid,
+        part: stores.appStore.part,
+        getPart: stores.appStore.getPart,
         selectOptions
     }
 })(observer(App))

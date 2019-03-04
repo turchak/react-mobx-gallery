@@ -4,6 +4,7 @@
     flex-wrap: wrap
     margin: 0 -15px
     &__item
+        position: relative
         font-size: 0
         width: 50%
         @include mobile-large-min
@@ -18,4 +19,16 @@
             width: calc(100% / 10)         
         @include desktop-4k
             width: calc(100% / 17)
+    &__title
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 100%
+        padding: 5px
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        font-size: 16px
+        background-color: rgba(255,255,255, 0.5)
+        z-index: 1
 
