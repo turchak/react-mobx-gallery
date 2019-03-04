@@ -3,7 +3,7 @@ import { observable, action, decorate  } from 'mobx'
 class RouterStore {
   constructor(rootStore) {
     this.rootStore = rootStore
-    this.url = '/'
+    this.url = window.location.pathname
   }
 
 	changeUrl = url => {
