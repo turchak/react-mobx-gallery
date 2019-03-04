@@ -5,7 +5,7 @@ class App extends React.Component {
 
   handleClick = ev => {
     const { name } = ev.target
-
+    //
     const title = name
     const url = `/${name}`
     const state = {
@@ -13,7 +13,7 @@ class App extends React.Component {
       url,
     }
     window.history.pushState(state, title, url)
-    console.log(window.history)
+    // console.log(window.history)
     this.props.changeUrl(`/${name}`)
   };
 

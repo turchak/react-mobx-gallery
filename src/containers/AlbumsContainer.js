@@ -2,8 +2,10 @@ import * as React from 'react'
 import { observer, inject } from 'mobx-react'
 
 class AlbumsContainer extends React.Component {
+	componentDidMount() {
+	}
 
-  render() {
+	render() {
     return <div>Albums</div>
   }
 }
