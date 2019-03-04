@@ -6,6 +6,10 @@ import './styles.sass'
 
 class Header extends React.Component {
 
+  handleClick = ev => {
+    ev.preventDefault()
+  }
+
   handleChange = ev => {
     const { search } = this.props
     search(ev)
@@ -14,7 +18,7 @@ class Header extends React.Component {
   render() {
     return  (
       <header className="header">
-        <a href="/" className="logo">
+        <a href="/" className="logo" onClick={this.handleClick}>
           <img src={logo} className="logo__img"alt="logo"/>
         </a>
         <Input
