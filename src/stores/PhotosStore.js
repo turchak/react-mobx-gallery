@@ -1,10 +1,10 @@
-import { observable, action, decorate  } from 'mobx'
+import { observable, action, decorate, runInAction  } from 'mobx'
 import API from '../services/ApiService'
 
 class PhotosStore {
   constructor(rootStore) {
     this.rootStore = rootStore
-    this.albums = null
+    this.photos = []
     this.isLoading = false
   }
 
@@ -12,22 +12,22 @@ class PhotosStore {
 	  this.isLoading = true
 
 	  API.getPhotos()
-	    .then(json => {
-	      action(() => {
+	    .then(json => 
+	      runInAction(() => {
 	        this.isLoading = false
-	        this.albums = json
-	      })()
-	    })
-	    .catch(error => {
-	      action(() => {
+	        this.photos = json
+	      })
+	    )
+	    .catch(error => 
+	      runInAction(() => {
 	        this.isLoading = false
 	        this.error = error
 	      })
-	    })
+	    )
 	}
 }
 decorate(PhotosStore, {
-  albums: observable,
+  photos: observable,
   isLoading: observable,
   fetchAlbums: action,
 })

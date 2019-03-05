@@ -7,14 +7,8 @@ class RouterStore {
   }
 
 	changeUrl = pathname => {
-	  const title = pathname
-	  const url = pathname
-	  const state = {
-	    pathname,
-	    url,
-	  }
-	  window.history.pushState(state, title, url)
-	  this.url = pathname
+	  console.log(typeof pathname)
+	  this.url = `/${pathname}`
 	}
 }
 decorate(RouterStore, {

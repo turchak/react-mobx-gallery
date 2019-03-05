@@ -1,34 +1,36 @@
-import { observable, action, decorate  } from 'mobx'
+import { observable, action, decorate, runInAction  } from 'mobx'
 import API from '../services/ApiService'
 
 class AlbumsStore {
   constructor(rootStore) {
     this.rootStore = rootStore
     this.albums = []
+    this.albumId = null
     this.isLoading = false
     this.error = null
   }
 
   fetchAlbums = () => {
     this.isLoading = true
-
+    console.log(this.isLoading)
     API.getAlbums()
-      .then(json => {
-        action(() => {
-          this.isLoading = false
-          this.albums = json
-        })()
-      })
-      .catch(error => {
-        action(() => {
-          this.isLoading = false
-          this.error = error
-        })
-      })
+      .then(json => runInAction(() => {
+        this.isLoading = false
+        this.albums = json
+      }))
+      .catch(error => runInAction(() => {
+        this.isLoading = false
+        this.error = error
+      }))
+  }
+
+  setAlbumId = id => {
+    this.albumId = id
   }
 }
 decorate(AlbumsStore, {
   albums: observable,
+  albumId: observable,
   isLoading: observable,
   fetchAlbums: action,
 })

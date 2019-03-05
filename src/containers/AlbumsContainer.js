@@ -13,7 +13,7 @@ class AlbumsContainer extends React.Component {
       <ul>
         {albums.map(album => (
           <li key={album.id}>
-            {album.title}
+            {album.id}.{album.title}
           </li>
         ))}
       </ul>

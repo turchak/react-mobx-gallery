@@ -1,40 +1,39 @@
 import * as React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import App from './AppContainer'
 import { observer, inject } from 'mobx-react'
-import AlbumsContainer from './AlbumsContainer'
 import PhotosContainer from './PhotosContainer'
+import AppContainer from './AppContainer'
 import DevTools from 'mobx-react-devtools'
 
 class RootContainer extends React.Component {
   componentDidMount() {
-    const { url, changeUrl } = this.props
-    changeUrl(window.location.pathname)
-    window.addEventListener( 'popstate', ev => {
-      if (ev.state) {
-        return changeUrl(ev.state.url)
-      }
-      changeUrl('/')
+    console.log(window.location.hash)
+    const { changeUrl } = this.props
+    window.addEventListener( 'hashchange', ev => {
+      const { hash } = ev.target.location
+      console.log(hash)
+      // if (ev.state) {
+      //   return changeUrl(ev.state.url)
+      // }
+      changeUrl(`${hash}`)
     })
+    changeUrl(`${window.location.hash}`)
   }
 
   switchRoute = url => {
+    console.log(url)
     switch (url) {
-    case '/':
-      return <App />
-    case '/albums':
-      return <AlbumsContainer />
+    case '':
+      return <AppContainer />
     case '/photos':
       return <PhotosContainer />
     default:
-      return <App />
+      return <AppContainer />
     }
   }
 
   render() {
-    console.log(this.props)
-    console.log(window.location)
     const { url } = this.props
     if (url) {
       return (
