@@ -4,8 +4,9 @@ import API from '../services/ApiService'
 class AlbumsStore {
   constructor(rootStore) {
     this.rootStore = rootStore
-    this.albums = null
+    this.albums = []
     this.isLoading = false
+    this.error = null
   }
 
   fetchAlbums = () => {

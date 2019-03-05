@@ -8,6 +8,7 @@
     "gh-pages": "^2.0.1",
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
+    "mobx-react-devtools": "^6.1.0",
     "node-sass": "^4.11.0",
     "normalize.css": "^8.0.1",
     "react": "^16.8.3",
@@ -25,26 +26,59 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "linebreak-style": ["error", "windows"],
+      "linebreak-style": [
+        "error",
+        "windows"
+      ],
       "no-debugger": 0,
       "no-alert": 0,
-      "no-unused-vars": [1, {"argsIgnorePattern": "res|next|^err"}],
-      "prefer-const": ["error", {"destructuring": "all"}],
-      "arrow-body-style": [2, "as-needed"],
-      "no-unused-expressions": [2, {"allowTaggedTemplates": true}],
-      "no-param-reassign": [1],
+      "no-unused-vars": [
+        1,
+        {
+          "argsIgnorePattern": "res|next|^err"
+        }
+      ],
+      "prefer-const": [
+        "error",
+        {
+          "destructuring": "all"
+        }
+      ],
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ],
+      "no-unused-expressions": [
+        2,
+        {
+          "allowTaggedTemplates": true
+        }
+      ],
+      "no-param-reassign": [
+        1
+      ],
       "no-console": 0,
       "import/prefer-default-export": 0,
       "import": 0,
       "func-names": 0,
       "space-before-function-paren": 0,
       "comma-dangle": 0,
-      "max-len": 0,
+      "max-len": [
+        "error",
+        {
+          "code": 80
+        }
+      ],
       "import/extensions": 0,
-      "no-underscore-dangle": [0, "always"],
+      "no-underscore-dangle": [
+        0,
+        "always"
+      ],
       "consistent-return": 0,
       "react/display-name": 1,
-      "react/no-array-index-key": [1],
+      "react/no-array-index-key": [
+        1
+      ],
       "react/react-in-jsx-scope": 0,
       "react/prefer-stateless-function": 0,
       "react/forbid-prop-types": 0,
@@ -52,26 +86,85 @@
       "jsx-a11y/accessible-emoji": 0,
       "react/jsx-filename-extension": 0,
       "radix": 0,
-      "no-shadow": [1],
-      "quotes": [1, "single", "avoid-escape"],
+      "no-shadow": [
+        1
+      ],
+      "quotes": [
+        1,
+        "single",
+        "avoid-escape"
+      ],
       "jsx-a11y/href-no-hash": "off",
-      "jsx-a11y/anchor-is-valid": ["warn", {"aspects": ["invalidHref"]}],
-      "space-in-parens": [0, "always"],
-      "template-curly-spacing": ["error", "never"],
-      "array-bracket-spacing": [2, "always"],
-      "object-curly-spacing": [0, "always"],
-      "computed-property-spacing": ["error", "never"],
-      "no-multiple-empty-lines": [2, {"max": 1, "maxEOF": 0, "maxBOF": 0}],
-      "no-use-before-define": [2, {"functions": false}],
-      "semi": [1, "never"],
-      "react/jsx-curly-spacing": [2, "never"],
-      "react/jsx-indent": [2, 2],
-      "no-undef": [1],
-      "no-case-declarations": [1],
-      "no-return-assign": [1],
-      "camelcase": [1],
-      "indent": ["error", 2],
-      "max-len": ["error", { "code": 80 }]
+      "jsx-a11y/anchor-is-valid": [
+        "warn",
+        {
+          "aspects": [
+            "invalidHref"
+          ]
+        }
+      ],
+      "space-in-parens": [
+        0,
+        "always"
+      ],
+      "template-curly-spacing": [
+        "error",
+        "never"
+      ],
+      "array-bracket-spacing": [
+        2,
+        "always"
+      ],
+      "object-curly-spacing": [
+        0,
+        "always"
+      ],
+      "computed-property-spacing": [
+        "error",
+        "never"
+      ],
+      "no-multiple-empty-lines": [
+        2,
+        {
+          "max": 1,
+          "maxEOF": 0,
+          "maxBOF": 0
+        }
+      ],
+      "no-use-before-define": [
+        2,
+        {
+          "functions": false
+        }
+      ],
+      "semi": [
+        1,
+        "never"
+      ],
+      "react/jsx-curly-spacing": [
+        2,
+        "never"
+      ],
+      "react/jsx-indent": [
+        2,
+        2
+      ],
+      "no-undef": [
+        1
+      ],
+      "no-case-declarations": [
+        1
+      ],
+      "no-return-assign": [
+        1
+      ],
+      "camelcase": [
+        1
+      ],
+      "indent": [
+        "error",
+        2
+      ]
     }
   },
   "browserslist": [
