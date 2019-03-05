@@ -6,8 +6,15 @@ class RouterStore {
     this.url = null
   }
 
-	changeUrl = url => {
-	  this.url = url
+	changeUrl = pathname => {
+	  const title = pathname
+	  const url = pathname
+	  const state = {
+	    pathname,
+	    url,
+	  }
+	  window.history.pushState(state, title, url)
+	  this.url = pathname
 	}
 }
 decorate(RouterStore, {

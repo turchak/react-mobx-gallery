@@ -5,6 +5,7 @@ import App from './AppContainer'
 import { observer, inject } from 'mobx-react'
 import AlbumsContainer from './AlbumsContainer'
 import PhotosContainer from './PhotosContainer'
+import DevTools from 'mobx-react-devtools'
 
 class RootContainer extends React.Component {
   componentDidMount() {
@@ -41,6 +42,7 @@ class RootContainer extends React.Component {
           <Header />
           {this.switchRoute(url)}
           <Footer />
+          <DevTools /> 
         </>
       )
     }
