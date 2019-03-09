@@ -1,74 +1,94 @@
 import * as React from 'react'
-import { observer, inject } from 'mobx-react'
-import { toJS } from 'mobx'
-import Select from 'arui-feather/select'
+
+import { inject, observer } from 'mobx-react'
+
+import PhotosContainer from './PhotosContainer'
+
+// import { toJS } from 'mobx'
 
 class AppContainer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.selectRef = new React.createRef()
+  }
+  
   componentDidMount() {
     const { fetchAlbums, fetchPhotos } = this.props
     fetchAlbums()
     fetchPhotos()
   }
 
+  componentDidUpdate(prevProps) {
+    
+    const { albumId, getPhotos, photos } = this.props
+    // console.log('TCL: AppContainer -> componentDidUpdate -> photos', photos)
+    // console.log('TCL: AppContainer -> componentDidUpdate -> prevProps',prevProps.albumId )
+    // console.log('TCL: AppContainer -> componentDidUpdate -> albumId', albumId)
+    
+    // console.log('update')
+    
+    if(prevProps.albumId !== albumId || prevProps.photos.length !== photos.length) {
+      getPhotos(albumId)
+      console.log('TCL: AppContainer -> componentDidUpdate -> albumId', albumId)
+      if (!this.props.albumId) {
+        this.selectRef.current.value = 0
+        return 
+      }
+      this.selectRef.current.value = albumId
+    }
+  }
+
   handleChange = ev => {
-    console.log(ev)
-    const id = ev[0]
-    window.location.hash = `/album/${id}`
+    const { getPhotos } = this.props
+    window.location.hash = `/album/${ev.target.value}`
+    getPhotos(ev.target.value)
   }
 
   render() {
-    const { selectOptions, albumId, albums } = this.props
-    console.log(albumId)
+    const { selectOptions, albumId } = this.props
     return (
       <div className="container">
-        <Select 
-          label="Album"  
-          mode="radio"
-          options={selectOptions} 
-          disabled={!selectOptions} 
-          hideTick={true} 
-          placeholder="Choose Album" 
-          onChange={this.handleChange}
-          nativeOptionPlaceholder="Choose Album"
+        <select 
           className="select"
-          width="available"
-          value={albumId ? [ albumId ] : null}
-        />
+          name="albums" 
+          defaultValue={0} 
+          ref={this.selectRef} 
+          onChange={this.handleChange}
+        >
+          <option value="0" disabled>Choose Album</option>
+          {selectOptions.map(option => <option key={option.value} value={option.value}>{option.text}</option>)}
+        </select>
+        <PhotosContainer />
       </div>
     )
   }
 }
 
 export default inject(stores => {
-  const selectOptions = stores.rootStore.albumsStore.albums
-    .map(album => ({ value: album.id, text: album.title }))
+  const { albumsStore, routerStore, photosStore } = stores.rootStore
+  const selectOptions = albumsStore.albums
+    .reduce((acc, val) => {
+      acc.push({ value: val.id, text: val.title })
+      return acc
+    }, [])
+
   const getAlbumId = (albums, url) => {
     if (albums.length && url !== '/') {
-      console.log(url)
       const id = url.slice(url.lastIndexOf('/') +1, url.length)
       return Number(id)
     }
     return null
   }
-  const albumId = getAlbumId(stores.rootStore.albumsStore.albums, stores.rootStore.routerStore.url)
-  const getPhotos = (photos, id) => photos.reduce((acc, val) => {
-    if (val.albumId === id) {
-      acc.push(val)
-      return acc
-    }
-    return acc
-  }, [])
-  const selectedPhotos = getPhotos(stores.rootStore.photosStore.photos, albumId)
+  
+  const albumId = getAlbumId(albumsStore.albums, routerStore.url)
   return {
-    fetchPhotos: stores.rootStore.photosStore.fetchPhotos,
-    fetchAlbums: stores.rootStore.albumsStore.fetchAlbums,
-    albums: stores.rootStore.albumsStore.albums,
-    changeUrl: stores.rootStore.routerStore.changeUrl,
-    photos: stores.rootStore.photosStore.photos,
-    setAlbumId: stores.rootStore.albumsStore.setAlbumId,
-    url: stores.rootStore.routerStore.url,
+    url: routerStore.url,
+    fetchPhotos: photosStore.fetchPhotos,
+    fetchAlbums: albumsStore.fetchAlbums,
+    changeUrl: routerStore.changeUrl,
+    getPhotos: photosStore.getPhotos,
+    photos: photosStore.photos,
     selectOptions,
     albumId,
-    selectedPhotos
   }
 })(observer(AppContainer))

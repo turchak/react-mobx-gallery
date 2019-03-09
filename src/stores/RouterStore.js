@@ -1,13 +1,16 @@
-import { observable, action, decorate  } from 'mobx'
+import { action, decorate, observable } from 'mobx'
 
 class RouterStore {
   constructor(rootStore) {
     this.rootStore = rootStore
-    this.url = null
+    this.url = window.location.hash
+    window.addEventListener( 'hashchange', ev => { 
+      this.changeUrl(`${ev.target.location.hash}`)
+    })
+    this.changeUrl(`${window.location.hash}`)
   }
 
 	changeUrl = pathname => {
-	  console.log(typeof pathname)
 	  this.url = `/${pathname}`
 	}
 }

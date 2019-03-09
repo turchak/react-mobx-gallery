@@ -35,7 +35,6 @@ class ApiService {
         }
         return json
       }, error => {
-      	console.log(error.message)
         throw new Error(
           JSON.stringify({
             errorCode: error.status || 0,

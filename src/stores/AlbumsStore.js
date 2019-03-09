@@ -1,4 +1,10 @@
-import { observable, action, decorate, runInAction  } from 'mobx'
+import {
+  action,
+  decorate,
+  observable,
+  runInAction
+} from 'mobx'
+
 import API from '../services/ApiService'
 
 class AlbumsStore {
@@ -12,7 +18,6 @@ class AlbumsStore {
 
   fetchAlbums = () => {
     this.isLoading = true
-    console.log(this.isLoading)
     API.getAlbums()
       .then(json => runInAction(() => {
         this.isLoading = false
