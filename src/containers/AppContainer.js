@@ -19,14 +19,7 @@ class AppContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    
     const { albumId, getPhotos, photos } = this.props
-    // console.log('TCL: AppContainer -> componentDidUpdate -> photos', photos)
-    // console.log('TCL: AppContainer -> componentDidUpdate -> prevProps',prevProps.albumId )
-    // console.log('TCL: AppContainer -> componentDidUpdate -> albumId', albumId)
-    
-    // console.log('update')
-    
     if(prevProps.albumId !== albumId || prevProps.photos.length !== photos.length) {
       getPhotos(albumId)
       console.log('TCL: AppContainer -> componentDidUpdate -> albumId', albumId)
