@@ -5,13 +5,15 @@ class RouterStore {
     this.rootStore = rootStore
     this.url = window.location.hash
     window.addEventListener( 'hashchange', ev => { 
-      this.changeUrl(`${ev.target.location.hash}`)
+      this.changeUrl(`${ev.target.location.hash}`, true)
     })
-    this.changeUrl(`${window.location.hash}`)
   }
 
-	changeUrl = pathname => {
-	  this.url = `/${pathname}`
+	changeUrl = (pathname, flag) => {
+	  console.log(pathname)
+	  this.url = `${pathname}`
+	  if(flag) return
+	  window.location.hash = `${pathname}`
 	}
 }
 decorate(RouterStore, {

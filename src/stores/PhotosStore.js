@@ -5,7 +5,7 @@ import {
   runInAction
 } from 'mobx'
 
-import API from '../services/ApiService'
+import { API } from '../services/ApiService'
 
 class PhotosStore {
   constructor(rootStore) {

@@ -22,7 +22,6 @@ class AppContainer extends React.Component {
     const { albumId, getPhotos, photos } = this.props
     if(prevProps.albumId !== albumId || prevProps.photos.length !== photos.length) {
       getPhotos(albumId)
-      console.log('TCL: AppContainer -> componentDidUpdate -> albumId', albumId)
       if (!this.props.albumId) {
         this.selectRef.current.value = 0
         return 
@@ -32,13 +31,13 @@ class AppContainer extends React.Component {
   }
 
   handleChange = ev => {
-    const { getPhotos } = this.props
-    window.location.hash = `/album/${ev.target.value}`
+    const { getPhotos, changeUrl } = this.props
+    changeUrl(`/album/${ev.target.value}`)
     getPhotos(ev.target.value)
   }
 
   render() {
-    const { selectOptions, albumId } = this.props
+    const { selectOptions } = this.props
     return (
       <div className="container">
         <select 

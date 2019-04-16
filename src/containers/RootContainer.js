@@ -8,9 +8,8 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import PhotosContainer from './PhotosContainer'
 
-class RootContainer extends React.Component {
-
-  switchRoute = url => {
+const  RootContainer = props => {
+  const switchRoute = url => {
     switch (url) {
     case '/':
       return <AppContainer />
@@ -20,19 +19,15 @@ class RootContainer extends React.Component {
       return <AppContainer />
     }
   }
-
-  render() {
-    const { url } = this.props
-    return (
-      <>
-        <Header />
-        {this.switchRoute(url)}
-        <Footer />
-        <DevTools /> 
-      </>
-    )
-  
-  }
+  const { url } = props
+  return (
+    <>
+      <Header />
+      {switchRoute(url)}
+      <Footer />
+      <DevTools /> 
+    </>
+  )
 }
 
 export default inject(stores => ({
