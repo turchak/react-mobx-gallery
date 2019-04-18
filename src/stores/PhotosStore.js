@@ -13,6 +13,7 @@ class PhotosStore {
     this.photos = []
     this.isLoading = false
     this.selectedPhotos = []
+    this.searchResults = []
   }
 
 	fetchPhotos = () => {
@@ -79,6 +80,10 @@ class PhotosStore {
 	  }
 	}
 
+	getSearchResults = name => {
+	  this.results = this.photos.filter(el => el.title.includes(name))
+	}
+
 }
 decorate(PhotosStore, {
   photos: observable,
@@ -86,6 +91,7 @@ decorate(PhotosStore, {
   selectedPhotos: observable,
   fetchAlbums: action,
   getPhotos: action,
+  getSearchResults: action,
 })
 
 export default PhotosStore
